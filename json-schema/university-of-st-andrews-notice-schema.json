@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://status.st-andrews.ac.uk/schema/notice.json",
+  "title": "Notice",
+  "description": "An incident or maintenance notice on the University of St Andrews service status page.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer" },
+    "type": {
+      "type": "string",
+      "enum": ["general", "planned", "unplanned"]
+    },
+    "timeline_state": {
+      "type": "string",
+      "enum": ["future", "present", "past_recent", "past_distant"]
+    },
+    "state": {
+      "type": "string",
+      "description": "Current notice state, e.g. investigating, scheduled, recovering, resolved, complete, cancelled. Absent for general notices."
+    },
+    "subject": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "begins_at": { "type": ["string", "null"], "format": "date-time" },
+    "ends_at": { "type": ["string", "null"], "format": "date-time" },
+    "began_at": { "type": ["string", "null"], "format": "date-time" },
+    "ended_at": { "type": ["string", "null"], "format": "date-time" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "tag_list": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "self": { "type": "string" }
+      }
+    },
+    "latest_update": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "state": { "type": "string" },
+        "content": { "type": "string" },
+        "url": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": { "$ref": "university-of-st-andrews-component-schema.json" }
+    },
+    "updates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "state": { "type": "string" },
+          "content": { "type": "string" },
+          "url": { "type": "string" },
+          "created_at": { "type": "string", "format": "date-time" },
+          "updated_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  },
+  "required": ["id", "type", "subject", "url"]
+}

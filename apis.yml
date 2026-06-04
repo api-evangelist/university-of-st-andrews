@@ -44,6 +44,14 @@ apis:
         url: https://status.st-andrews.ac.uk/api
       - type: Status
         url: https://status.st-andrews.ac.uk/
+      - type: OpenAPI
+        url: openapi/university-of-st-andrews-status.yaml
+      - type: x-vocabulary
+        url: vocabulary/university-of-st-andrews-vocabulary.yml
+      - type: x-rules
+        url: rules/university-of-st-andrews-rules.yml
+      - type: x-json-ld
+        url: json-ld/university-of-st-andrews-context.jsonld
   - aid: university-of-st-andrews:pure-oai
     name: Pure Research Portal OAI-PMH
     description: >-

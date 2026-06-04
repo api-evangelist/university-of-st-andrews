@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://status.st-andrews.ac.uk/structure/notice.json",
+  "name": "Notice",
+  "description": "An incident or maintenance notice on the University of St Andrews service status page.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "int64" },
+    "type": { "type": "string" },
+    "timeline_state": { "type": "string" },
+    "state": { "type": "string" },
+    "subject": { "type": "string" },
+    "url": { "type": "string" },
+    "begins_at": { "type": ["string", "null"], "format": "date-time" },
+    "ends_at": { "type": ["string", "null"], "format": "date-time" },
+    "began_at": { "type": ["string", "null"], "format": "date-time" },
+    "ended_at": { "type": ["string", "null"], "format": "date-time" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "tag_list": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "self": { "type": "string" }
+      }
+    },
+    "latest_update": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "int64" },
+        "state": { "type": "string" },
+        "content": { "type": "string" },
+        "url": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "required": ["id", "type", "subject", "url"]
+}

@@ -1,0 +1,46 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "staandrews": "https://status.st-andrews.ac.uk/vocab#",
+    "@vocab": "https://status.st-andrews.ac.uk/vocab#",
+    "Organization": "schema:CollegeOrUniversity",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "created_at": "schema:dateCreated",
+    "updated_at": "schema:dateModified",
+    "Page": "staandrews:Page",
+    "Component": "staandrews:Component",
+    "Notice": "staandrews:Notice",
+    "Update": "staandrews:Update",
+    "state": "staandrews:state",
+    "state_text": "staandrews:stateText",
+    "type": "staandrews:noticeType",
+    "timeline_state": "staandrews:timelineState",
+    "subject": "schema:about",
+    "parent_id": { "@id": "staandrews:parent", "@type": "@id" },
+    "position": "schema:position",
+    "tag_list": "staandrews:tags",
+    "latest_update": "staandrews:latestUpdate",
+    "updates": "staandrews:updates",
+    "components": "staandrews:components",
+    "notices": "staandrews:notices",
+    "content": "schema:text",
+    "began_at": "staandrews:beganAt",
+    "ended_at": "staandrews:endedAt",
+    "begins_at": "staandrews:beginsAt",
+    "ends_at": "staandrews:endsAt",
+    "links": "staandrews:links",
+    "meta": "staandrews:meta",
+    "institution": {
+      "@id": "schema:CollegeOrUniversity",
+      "@context": {
+        "name": "schema:name",
+        "url": "schema:url"
+      }
+    }
+  },
+  "@type": "schema:CollegeOrUniversity",
+  "name": "University of St Andrews",
+  "url": "https://www.st-andrews.ac.uk/"
+}

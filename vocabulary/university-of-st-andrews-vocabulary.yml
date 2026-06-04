@@ -1,0 +1,62 @@
+vocabulary:
+  name: University of St Andrews Service Status API Vocabulary
+  description: >-
+    Controlled terms observed in the University of St Andrews Service Status API
+    (Sorry status platform), covering pages, components, notices, and their
+    states.
+  version: "1.0.0"
+  terms:
+    - term: page
+      definition: The overall status page object, summarising current service state and links to components and notices.
+      tags: [status, object]
+    - term: component
+      definition: A system or service tracked on the status page; may be nested under a parent component.
+      tags: [components, object]
+    - term: notice
+      definition: An incident, maintenance, or general announcement record, past, present, or future.
+      tags: [notices, object]
+    - term: update
+      definition: A timestamped update belonging to a notice, carrying a state and human-readable content.
+      tags: [notices, object]
+    - term: state
+      definition: The operational condition of a page or component (operational, degraded, under_maintenance) or the lifecycle state of a notice.
+      tags: [enum, status]
+    - term: operational
+      definition: State value indicating a page or component is functioning normally.
+      tags: [enum, state]
+    - term: degraded
+      definition: State value indicating reduced or impaired service.
+      tags: [enum, state]
+    - term: under_maintenance
+      definition: State value indicating a page or component is undergoing maintenance.
+      tags: [enum, state]
+    - term: type
+      definition: Classification of a notice as general, planned, or unplanned.
+      tags: [enum, notices]
+    - term: timeline_state
+      definition: Temporal placement of a notice (future, present, past_recent, past_distant).
+      tags: [enum, notices]
+    - term: parent_id
+      definition: Identifier of the parent component, enabling a hierarchy of components; null for top-level components.
+      tags: [components, relationship]
+    - term: tag_list
+      definition: Array of free-form tags associated with a notice (e.g. bugfix).
+      tags: [notices, metadata]
+    - term: latest_update
+      definition: The most recent update object attached to a notice in collection responses.
+      tags: [notices, object]
+    - term: meta
+      definition: Pagination metadata for collection responses, containing count, total_count, and next_page.
+      tags: [pagination, metadata]
+    - term: began_at
+      definition: Timestamp at which a notice (incident) actually began; null if not yet started.
+      tags: [notices, timestamp]
+    - term: ended_at
+      definition: Timestamp at which a notice actually ended; null if ongoing.
+      tags: [notices, timestamp]
+    - term: begins_at
+      definition: Scheduled start timestamp for a planned notice (maintenance).
+      tags: [notices, timestamp]
+    - term: ends_at
+      definition: Scheduled end timestamp for a planned notice (maintenance).
+      tags: [notices, timestamp]

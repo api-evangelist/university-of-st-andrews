@@ -1,0 +1,350 @@
+openapi: 3.0.3
+info:
+  title: University of St Andrews Service Status API
+  description: >-
+    JSON API for the University of St Andrews service status page, hosted on the
+    Sorry (Sorry App) status platform. Exposes overall page status, system
+    components, and notices (incidents and maintenance). The API is read-only and
+    public. Fair-use rate limiting applies at 10 requests per second, and
+    collections paginate at a maximum of 25 records per page. Paths and schemas in
+    this document were derived from the published API documentation at
+    https://status.st-andrews.ac.uk/api and verified against live responses.
+  version: v1
+  contact:
+    name: University of St Andrews
+    url: https://status.st-andrews.ac.uk/
+servers:
+  - url: https://status.st-andrews.ac.uk/api/v1
+    description: Production v1 endpoint
+paths:
+  /status:
+    get:
+      operationId: getStatus
+      summary: Get overall page status
+      description: Returns a simple overview of the current overall status of the status page.
+      tags:
+        - Status
+      responses:
+        '200':
+          description: The current overall page status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+  /components:
+    get:
+      operationId: listComponents
+      summary: List components
+      description: >-
+        Returns a paginated list of system components. Supports filtering by
+        parent so that top-level components or the children of a given component
+        can be retrieved.
+      tags:
+        - Components
+      parameters:
+        - name: filter[parent_id_null]
+          in: query
+          description: When true, retrieve only top-level components (those with no parent).
+          required: false
+          schema:
+            type: boolean
+        - name: filter[parent_id_eq]
+          in: query
+          description: Retrieve the child components of the component with this ID.
+          required: false
+          schema:
+            type: integer
+        - name: page
+          in: query
+          description: Page number for pagination.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: A paginated list of components.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentsResponse'
+  /notices:
+    get:
+      operationId: listNotices
+      summary: List notices
+      description: >-
+        Returns a paginated list of notices (incidents and maintenance), past,
+        present, and future. Supports filtering by type and timeline state.
+      tags:
+        - Notices
+      parameters:
+        - name: filter[type_eq]
+          in: query
+          description: Filter notices by type.
+          required: false
+          schema:
+            type: string
+            enum:
+              - general
+              - planned
+              - unplanned
+        - name: filter[timeline_state_eq]
+          in: query
+          description: Filter notices by timeline state.
+          required: false
+          schema:
+            type: string
+            enum:
+              - future
+              - present
+              - past_recent
+              - past_distant
+        - name: page
+          in: query
+          description: Page number for pagination.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: A paginated list of notices.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoticesResponse'
+  /notices/{id}:
+    get:
+      operationId: getNotice
+      summary: Get detailed notice information
+      description: >-
+        Returns detailed information for a single notice, including the affected
+        components and the full list of updates.
+      tags:
+        - Notices
+      parameters:
+        - name: id
+          in: path
+          description: The unique identifier of the notice.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The requested notice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoticeResponse'
+components:
+  schemas:
+    StatusResponse:
+      type: object
+      properties:
+        page:
+          $ref: '#/components/schemas/Page'
+    Page:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        state:
+          type: string
+          enum:
+            - operational
+            - degraded
+            - under_maintenance
+        state_text:
+          type: string
+        url:
+          type: string
+          format: uri
+        links:
+          type: object
+          properties:
+            components:
+              $ref: '#/components/schemas/Link'
+            notices:
+              $ref: '#/components/schemas/Link'
+            self:
+              type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        count:
+          type: integer
+    ComponentsResponse:
+      type: object
+      properties:
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    Component:
+      type: object
+      properties:
+        id:
+          type: integer
+        state:
+          type: string
+          enum:
+            - operational
+            - degraded
+            - under_maintenance
+        name:
+          type: string
+        description:
+          type: string
+        parent_id:
+          type: integer
+          nullable: true
+        position:
+          type: integer
+        links:
+          type: object
+          properties:
+            children:
+              $ref: '#/components/schemas/Link'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    NoticesResponse:
+      type: object
+      properties:
+        notices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notice'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    NoticeResponse:
+      type: object
+      properties:
+        notice:
+          $ref: '#/components/schemas/NoticeDetail'
+    Notice:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          enum:
+            - general
+            - planned
+            - unplanned
+        timeline_state:
+          type: string
+          enum:
+            - future
+            - present
+            - past_recent
+            - past_distant
+        state:
+          type: string
+          description: >-
+            Current notice state, e.g. investigating, scheduled, recovering,
+            resolved, complete, cancelled. Absent for general notices.
+        subject:
+          type: string
+        url:
+          type: string
+          format: uri
+        begins_at:
+          type: string
+          format: date-time
+          nullable: true
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        began_at:
+          type: string
+          format: date-time
+          nullable: true
+        ended_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        tag_list:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+        latest_update:
+          $ref: '#/components/schemas/Update'
+    NoticeDetail:
+      allOf:
+        - $ref: '#/components/schemas/Notice'
+        - type: object
+          properties:
+            components:
+              type: array
+              items:
+                $ref: '#/components/schemas/Component'
+            updates:
+              type: array
+              items:
+                $ref: '#/components/schemas/Update'
+    Update:
+      type: object
+      properties:
+        id:
+          type: integer
+        state:
+          type: string
+        content:
+          type: string
+        url:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Meta:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of records on the current page (maximum 25).
+        total_count:
+          type: integer
+          description: Total number of records across all pages.
+        next_page:
+          type: string
+          nullable: true
+          description: URL of the next page, if any.
+tags:
+  - name: Status
+    description: Overall page status.
+  - name: Components
+    description: System components and their hierarchy.
+  - name: Notices
+    description: Incidents and maintenance notices.

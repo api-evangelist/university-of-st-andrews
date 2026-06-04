@@ -1,0 +1,20 @@
+{
+  "page": {
+    "name": "University of St Andrews service status",
+    "state": "operational",
+    "state_text": "All systems are go!",
+    "url": "https://status.st-andrews.ac.uk",
+    "links": {
+      "components": {
+        "href": "/v1/components",
+        "count": 50
+      },
+      "notices": {
+        "href": "/v1/notices",
+        "count": 100
+      }
+    },
+    "created_at": "2023-01-01T00:00:00.000Z",
+    "updated_at": "2023-01-01T00:00:00.000Z"
+  }
+}
