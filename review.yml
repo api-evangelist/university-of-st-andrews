@@ -1,0 +1,45 @@
+---
+name: University of St Andrews
+description: University of St Andrews public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/university-of-st-andrews/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      St Andrews has no centralized developer portal. The confirmed public,
+      machine-readable surface is research-data and operational interoperability:
+      a documented JSON service-status API (Sorry platform, 10 req/sec), a Pure
+      OAI-PMH endpoint behind the Research Portal (verified live, HTTP 200), and a
+      DSpace OAI-PMH endpoint for the Research Repository (confirmed via search;
+      host returned 503/throttling to automated probes at review time). The
+      official StAResComp Research Computing GitHub org exists (HTTP 200). No
+      fabricated endpoints; status API base path returns 406 to non-browser User
+      Agents but is documented and live. LinkedIn returns 999 to bots (login
+      gate) but the school page exists.
+    endpoints:
+      - url: https://status.st-andrews.ac.uk/api
+        status: 406
+        note: Status API docs; 406 to curl UA but documented and live in browser.
+      - url: https://status.st-andrews.ac.uk/api/v1/status
+        status: 406
+        note: Overall status endpoint; rejects bot UA, documented JSON endpoint.
+      - url: https://risweb.st-andrews.ac.uk/ws/oai?verb=Identify
+        status: 200
+        note: Pure research information system OAI-PMH endpoint; verified live.
+      - url: https://research-portal.st-andrews.ac.uk/
+        status: 200
+        note: Public St Andrews Research Portal (Pure front end).
+      - url: https://research-repository.st-andrews.ac.uk/
+        status: 503
+        note: DSpace research repository; throttled automated probes at review time.
+      - url: https://github.com/StAResComp
+        status: 200
+        note: Official University of St Andrews Research Computing GitHub org.
+      - url: https://www.st-andrews.ac.uk/
+        status: 200
+        note: Official institution website.
+      - url: https://www.linkedin.com/school/university-of-st-andrews/
+        status: 999
+        note: School LinkedIn page; 999 is LinkedIn bot/login gate, page exists.
