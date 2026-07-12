@@ -80,6 +80,10 @@ apis:
       - type: Documentation
         url: https://research-repository.st-andrews.ac.uk/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/university-of-st-andrews-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/university-of-st-andrews-domain-security.yml
   - type: Website
     url: https://www.st-andrews.ac.uk/
   - type: GitHub
