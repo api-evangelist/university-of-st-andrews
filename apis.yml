@@ -80,6 +80,8 @@ apis:
       - type: Documentation
         url: https://research-repository.st-andrews.ac.uk/
 common:
+  - type: AgenticAccess
+    url: agentic-access/university-of-st-andrews-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/university-of-st-andrews-vulnerability-disclosure.yml
   - type: DomainSecurity
