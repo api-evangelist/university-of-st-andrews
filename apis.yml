@@ -12,9 +12,21 @@ description: >-
   Research Repository. The university also maintains a Research Computing GitHub
   organization for software produced for and by its researchers.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-st-andrews.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-st-andrews/refs/heads/main/apis.yml
 tags:
   - Education
@@ -29,56 +41,100 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: university-of-st-andrews:status
-    name: Service Status API
-    description: >-
-      JSON API for the University of St Andrews service status page, hosted on
-      the Sorry (StatusGator/Sorry App) platform. Exposes overall page status,
-      system components, and notices (incidents and maintenance). Rate limited to
-      10 requests per second; collections paginate at 25 records per page.
-    humanURL: https://status.st-andrews.ac.uk/api
-    baseURL: https://status.st-andrews.ac.uk/api/v1
-    tags: [ Status, Monitoring, JSON ]
-    properties:
-      - type: Documentation
-        url: https://status.st-andrews.ac.uk/api
-      - type: Status
-        url: https://status.st-andrews.ac.uk/
-      - type: OpenAPI
-        url: openapi/university-of-st-andrews-status.yaml
-      - type: x-vocabulary
-        url: vocabulary/university-of-st-andrews-vocabulary.yml
-      - type: x-rules
-        url: rules/university-of-st-andrews-rules.yml
-      - type: x-json-ld
-        url: json-ld/university-of-st-andrews-context.jsonld
-  - aid: university-of-st-andrews:pure-oai
-    name: Pure Research Portal OAI-PMH
-    description: >-
-      OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting)
-      endpoint for the University of St Andrews Pure research information system,
-      which underpins the public St Andrews Research Portal. Allows harvesting of
-      research outputs, projects, people, and dataset metadata in standard XML
-      formats.
-    humanURL: https://research-portal.st-andrews.ac.uk/
-    baseURL: https://risweb.st-andrews.ac.uk/ws/oai
-    tags: [ Research, Metadata, OAI-PMH, Open Access ]
-    properties:
-      - type: Documentation
-        url: https://www.st-andrews.ac.uk/research/support/pure/
-  - aid: university-of-st-andrews:repository-oai
-    name: St Andrews Research Repository OAI-PMH
-    description: >-
-      OAI-PMH endpoint for the DSpace-based St Andrews Research Repository, the
-      institution's open-access repository of theses, articles, and other
-      research outputs. Supports metadata harvesting via standard verbs and
-      formats (e.g. oai_dc, mods, xoai) and set-based selective harvesting.
-    humanURL: https://research-repository.st-andrews.ac.uk/
-    baseURL: https://research-repository.st-andrews.ac.uk/dspace-oai/request
-    tags: [ Research, Repository, DSpace, Metadata, OAI-PMH, Open Access ]
-    properties:
-      - type: Documentation
-        url: https://research-repository.st-andrews.ac.uk/
+- aid: university-of-st-andrews:pure-oai
+  name: Pure Research Portal OAI-PMH
+  description: >-
+    OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting) endpoint for the University of
+    St Andrews Pure research information system, which underpins the public St Andrews Research Portal.
+    Allows harvesting of research outputs, projects, people, and dataset metadata in standard XML formats.
+  humanURL: https://research-portal.st-andrews.ac.uk/
+  baseURL: https://risweb.st-andrews.ac.uk/ws/oai
+  tags:
+  - Research
+  - Metadata
+  - OAI-PMH
+  - Open Access
+  properties:
+  - type: Documentation
+    url: https://www.st-andrews.ac.uk/research/support/pure/
+- aid: university-of-st-andrews:repository-oai
+  name: St Andrews Research Repository OAI-PMH
+  description: >-
+    OAI-PMH endpoint for the DSpace-based St Andrews Research Repository, the institution's open-access
+    repository of theses, articles, and other research outputs. Supports metadata harvesting via standard
+    verbs and formats (e.g. oai_dc, mods, xoai) and set-based selective harvesting.
+  humanURL: https://research-repository.st-andrews.ac.uk/
+  baseURL: https://research-repository.st-andrews.ac.uk/dspace-oai/request
+  tags:
+  - Research
+  - Repository
+  - DSpace
+  - Metadata
+  - OAI-PMH
+  - Open Access
+  properties:
+  - type: Documentation
+    url: https://research-repository.st-andrews.ac.uk/
+- aid: university-of-st-andrews:university-of-st-andrews-components-api
+  name: University of St Andrews Components API
+  description: System components and their hierarchy.
+  humanURL: https://status.st-andrews.ac.uk/api
+  baseURL: https://status.st-andrews.ac.uk/api/v1
+  tags:
+  - Components
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-st-andrews-components-api-openapi.yml
+  - type: Documentation
+    url: https://status.st-andrews.ac.uk/api
+  - type: Status
+    url: https://status.st-andrews.ac.uk/
+  - type: x-vocabulary
+    url: vocabulary/university-of-st-andrews-vocabulary.yml
+  - type: x-rules
+    url: rules/university-of-st-andrews-rules.yml
+  - type: x-json-ld
+    url: json-ld/university-of-st-andrews-context.jsonld
+- aid: university-of-st-andrews:university-of-st-andrews-notices-api
+  name: University of St Andrews Notices API
+  description: Incidents and maintenance notices.
+  humanURL: https://status.st-andrews.ac.uk/api
+  baseURL: https://status.st-andrews.ac.uk/api/v1
+  tags:
+  - Notices
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-st-andrews-notices-api-openapi.yml
+  - type: Documentation
+    url: https://status.st-andrews.ac.uk/api
+  - type: Status
+    url: https://status.st-andrews.ac.uk/
+  - type: x-vocabulary
+    url: vocabulary/university-of-st-andrews-vocabulary.yml
+  - type: x-rules
+    url: rules/university-of-st-andrews-rules.yml
+  - type: x-json-ld
+    url: json-ld/university-of-st-andrews-context.jsonld
+- aid: university-of-st-andrews:university-of-st-andrews-status-api
+  name: University of St Andrews Status API
+  description: Overall page status.
+  humanURL: https://status.st-andrews.ac.uk/api
+  baseURL: https://status.st-andrews.ac.uk/api/v1
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-st-andrews-status-api-openapi.yml
+  - type: Documentation
+    url: https://status.st-andrews.ac.uk/api
+  - type: Status
+    url: https://status.st-andrews.ac.uk/
+  - type: x-vocabulary
+    url: vocabulary/university-of-st-andrews-vocabulary.yml
+  - type: x-rules
+    url: rules/university-of-st-andrews-rules.yml
+  - type: x-json-ld
+    url: json-ld/university-of-st-andrews-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/university-of-st-andrews-agentic-access.yml
