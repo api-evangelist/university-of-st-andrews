@@ -1,0 +1,18 @@
+{
+  "provider": "university-of-st-andrews",
+  "sources": [
+    "university-of-st-andrews-components-api-openapi.yml",
+    "university-of-st-andrews-notices-api-openapi.yml",
+    "university-of-st-andrews-status-api-openapi.yml"
+  ],
+  "outputs": [
+    "university-of-st-andrews-components-api-openapi.yml",
+    "university-of-st-andrews-notices-api-openapi.yml",
+    "university-of-st-andrews-status-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
