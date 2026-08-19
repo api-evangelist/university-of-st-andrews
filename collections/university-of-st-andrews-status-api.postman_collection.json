@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "7938a94f-10f6-425e-a8e2-f932accade4e",
+      "name": "Status",
+      "description": {
+        "content": "Overall page status.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a0be0b7f-816a-4e35-abbf-177ee20dba61",
+          "name": "Get overall page status",
+          "request": {
+            "name": "Get overall page status",
+            "description": {
+              "content": "Returns a simple overview of the current overall status of the status page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d7a32da-0354-4849-b534-b8015a7fc2dd",
+              "name": "The current overall page status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": {\n    \"id\": 6014,\n    \"name\": \"string\",\n    \"state\": \"operational\",\n    \"state_text\": \"string\",\n    \"url\": \"https://gr.vpjNMNmICfHtqphQHni5pjpp34nWZvE,RrNkQWeB0Cx\",\n    \"links\": {\n      \"components\": {\n        \"href\": \"string\",\n        \"count\": 3604\n      },\n      \"notices\": {\n        \"href\": \"string\",\n        \"count\": 9110\n      },\n      \"self\": \"string\"\n    },\n    \"created_at\": \"2019-07-24T19:03:12.359Z\",\n    \"updated_at\": \"2005-04-21T16:38:15.026Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://status.st-andrews.ac.uk/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5718293c-9228-4c9e-8bba-7abad2594837",
+    "name": "University of St Andrews Service Components Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "JSON API for the University of St Andrews service status page, hosted on the Sorry (Sorry App) status platform. Exposes overall page status, system components, and notices (incidents and maintenance). The API is read-only and public. Fair-use rate limiting applies at 10 requests per second, and collections paginate at a maximum of 25 records per page. Paths and schemas in this document were derived from the published API documentation at https://status.st-andrews.ac.uk/api and verified against live responses.\n\nContact Support:\n Name: University of St Andrews",
+      "type": "text/plain"
+    }
+  }
+}

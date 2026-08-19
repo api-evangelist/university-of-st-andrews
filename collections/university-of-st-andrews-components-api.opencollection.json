@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "University of St Andrews Service Status Components API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://status.st-andrews.ac.uk/api/v1/components",
+            "params": [
+              {
+                "name": "filter[parent_id_null]",
+                "value": "",
+                "type": "query",
+                "description": "When true, retrieve only top-level components (those with no parent)."
+              },
+              {
+                "name": "filter[parent_id_eq]",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve the child components of the component with this ID."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of system components. Supports filtering by parent so that top-level components or the children of a given component can be retrieved."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
