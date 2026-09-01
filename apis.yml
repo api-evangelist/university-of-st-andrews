@@ -1,41 +1,51 @@
 ---
 aid: university-of-st-andrews
 name: University of St Andrews
+x-type: university
+x-category: Public Research University
 description: >-
-  The University of St Andrews is Scotland's first university (founded 1413) and
-  ranked #90 in the QS World University Rankings 2025. Its public developer and
-  API footprint is modest and oriented toward research-data interoperability and
-  operational transparency rather than a centralized developer portal. Confirmed
-  public, machine-readable interfaces include a JSON service-status API, an
-  OAI-PMH endpoint for the Pure research information system behind the St Andrews
-  Research Portal, and an OAI-PMH interface for the DSpace-based St Andrews
-  Research Repository. The university also maintains a Research Computing GitHub
-  organization for software produced for and by its researchers.
+  The University of St Andrews is Scotland's first university, chartered in 1413 with teaching
+  from 1410, and a public research institution in Fife with ROR identifier
+  https://ror.org/02wn5qz54. It authors no public API and operates no developer portal: probes on
+  2026-09-01 found no host at api.st-andrews.ac.uk, data.st-andrews.ac.uk,
+  opendata.st-andrews.ac.uk or developer.st-andrews.ac.uk, all four NXDOMAIN. What St Andrews
+  genuinely operates itself, on its own registrable domain, is metadata and identity
+  infrastructure rather than product APIs. Three surfaces are the institution's own. Its DSpace
+  research repository serves a fully working OAI-PMH 2.0 interface at
+  research-repository.st-andrews.ac.uk/oai/request with twelve metadata formats including the UK
+  electronic-theses profile uketd_dc. Its Shibboleth Identity Provider, entityID
+  https://idp.st-andrews.ac.uk/shibboleth, has been registered in the UK Access Management
+  Federation since January 2008, carries REFEDS Sirtfi assurance, and serves its own live SAML
+  metadata at login.st-andrews.ac.uk/idp/shibboleth. And it is an enrolled registrant in the
+  scholarly identifier registries, as DataCite provider NAHY and Crossref member 6332. Everything
+  else that looks like a St Andrews API is a vendor's contract running under a St Andrews name:
+  the research portal at research-portal.st-andrews.ac.uk is an Elsevier Pure tenancy, and the
+  service status page at status.st-andrews.ac.uk is a SorryApp tenancy. Both are recorded here as
+  tenant relationships, which they are, and neither vendor's contract is saved under this slug.
 type: Index
 deliveryModel:
-  model: saas
+  model: self-hosted
   open_source: false
-  commercial: true
+  commercial: false
   callable_host: true
-  label: Hosted service · you call their endpoint
+  label: Self-operated protocol endpoints · no institution-authored API product
   confidence: high
   source:
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - probed
+  generated: '2026-09-01'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Free
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free and open · no registration on the OAI-PMH or federation metadata endpoints
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - probed
+  generated: '2026-09-01'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-st-andrews.png
@@ -44,39 +54,40 @@ tags:
   - Education
   - Higher Education
   - University
+  - Public Research University
+  - United Kingdom
+  - Scotland
   - Research
+  - Research Repository
   - Open Access
   - OAI-PMH
-  - Scotland
-  - United Kingdom
+  - Identity Federation
+  - Shibboleth
+  - Persistent Identifiers
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
 apis:
-- aid: university-of-st-andrews:pure-oai
-  name: Pure Research Portal OAI-PMH
-  description: >-
-    OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting) endpoint for the University of
-    St Andrews Pure research information system, which underpins the public St Andrews Research Portal.
-    Allows harvesting of research outputs, projects, people, and dataset metadata in standard XML formats.
-  humanURL: https://research-portal.st-andrews.ac.uk/
-  baseURL: https://risweb.st-andrews.ac.uk/ws/oai
-  tags:
-  - Research
-  - Metadata
-  - OAI-PMH
-  - Open Access
-  properties:
-  - type: Documentation
-    url: https://www.st-andrews.ac.uk/research/support/pure/
 - aid: university-of-st-andrews:repository-oai
   name: St Andrews Research Repository OAI-PMH
   description: >-
-    OAI-PMH endpoint for the DSpace-based St Andrews Research Repository, the institution's open-access
-    repository of theses, articles, and other research outputs. Supports metadata harvesting via standard
-    verbs and formats (e.g. oai_dc, mods, xoai) and set-based selective harvesting.
+    OAI-PMH 2.0 endpoint for the DSpace-based St Andrews Research Repository, the University's
+    open-access repository of theses, articles and other research outputs. Verified live on
+    2026-09-01: verb=Identify returns repositoryName "St Andrews Research Repository",
+    protocolVersion 2.0, adminEmail Digital-Repository@st-andrews.ac.uk, earliestDatestamp
+    2006-11-21 and granularity to the second. verb=ListMetadataFormats returns twelve prefixes
+    (oai_dc, qdc, mods, mets, ore, rdf, marc, dim, didl, xoai, etdms, uketd_dc) and
+    verb=ListSets returns the community and collection hierarchy under handle prefix 10023.
+    The host is under the University's own registrable domain and the repository content,
+    handles and administration are the University's; the application is hosted for St Andrews
+    by University of Edinburgh Information Services (the host CNAMEs to
+    research-repository.st-andrews-lb.is.ed.ac.uk), a sector shared service rather than a
+    commercial platform, so this is recorded as institution-operated. No spec is saved: OAI-PMH
+    is a protocol with a published standard, not a per-institution contract.
   humanURL: https://research-repository.st-andrews.ac.uk/
-  baseURL: https://research-repository.st-andrews.ac.uk/dspace-oai/request
+  baseURL: https://research-repository.st-andrews.ac.uk/oai/request
+  x-operator: institution
+  x-liveness: live-2026-09-01
   tags:
   - Research
   - Repository
@@ -87,81 +98,321 @@ apis:
   properties:
   - type: Documentation
     url: https://research-repository.st-andrews.ac.uk/
-- aid: university-of-st-andrews:university-of-st-andrews-components-api
-  name: University of St Andrews Components API
-  description: System components and their hierarchy.
-  humanURL: https://status.st-andrews.ac.uk/api
-  baseURL: https://status.st-andrews.ac.uk/api/v1
+  - type: x-conformance
+    url: conformance/university-of-st-andrews-education-standards.yml
+- aid: university-of-st-andrews:identity-federation
+  name: University of St Andrews Shibboleth Identity Provider
+  description: >-
+    The University's own SAML 2.0 / Shibboleth Identity Provider, entityID
+    https://idp.st-andrews.ac.uk/shibboleth, registered in the UK Access Management Federation
+    as entity uk000278 since 2008-01-16 and therefore reachable through eduGAIN. The IdP serves
+    its own machine-readable SAML metadata at https://login.st-andrews.ac.uk/idp/shibboleth
+    (verified 200, application/xml, 4,351 bytes, validUntil 2040-07-01). The federation entity
+    declares shibmd:Scope st-andrews.ac.uk, SSO bindings over HTTP-POST, HTTP-POST-SimpleSign
+    and HTTP-Redirect, an AttributeAuthorityDescriptor exposing SAML 1.0 and 2.0 SOAP attribute
+    queries, and REFEDS Sirtfi assurance certification. A federation is shared by definition and
+    the IdP behind it is the institution's own - this is the strongest institution-operated
+    machine-readable surface St Andrews has.
+  humanURL: https://www.st-andrews.ac.uk/it-support/
+  baseURL: https://login.st-andrews.ac.uk/idp/shibboleth
+  x-operator: federation
+  x-federation: UK Access Management Federation (Jisc) / eduGAIN
+  x-entity-id: https://idp.st-andrews.ac.uk/shibboleth
+  x-liveness: live-2026-09-01
   tags:
-  - Components
+  - Identity
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - Single Sign-On
   properties:
-  - type: OpenAPI
-    url: openapi/university-of-st-andrews-components-api-openapi.yml
   - type: Documentation
-    url: https://status.st-andrews.ac.uk/api
-  - type: Status
-    url: https://status.st-andrews.ac.uk/
-  - type: x-vocabulary
-    url: vocabulary/university-of-st-andrews-vocabulary.yml
-  - type: x-rules
-    url: rules/university-of-st-andrews-rules.yml
-  - type: x-json-ld
-    url: json-ld/university-of-st-andrews-context.jsonld
-- aid: university-of-st-andrews:university-of-st-andrews-notices-api
-  name: University of St Andrews Notices API
-  description: Incidents and maintenance notices.
-  humanURL: https://status.st-andrews.ac.uk/api
-  baseURL: https://status.st-andrews.ac.uk/api/v1
+    url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+  - type: x-conformance
+    url: conformance/university-of-st-andrews-education-standards.yml
+- aid: university-of-st-andrews:research-portal
+  name: St Andrews Research Portal (Elsevier Pure tenancy)
+  description: >-
+    research-portal.st-andrews.ac.uk is the University's research information system and public
+    research portal, running on Elsevier Pure - the host CNAMEs to standrews.elsevierpure.com.
+    The research record, the outputs, the projects and the dataset DOIs are St Andrews'; the API
+    and the portal software are Elsevier's, so this is recorded as the tenant relationship it is
+    and no Pure contract is saved under this slug. It belongs to all/elsevier. This entry also
+    corrects a dead pointer carried since the June 2026 profile: the Pure OAI-PMH endpoint
+    previously recorded at https://risweb.st-andrews.ac.uk/ws/oai no longer exists - risweb
+    301-redirects to the portal home page, and https://research-portal.st-andrews.ac.uk/ws/oai
+    301-redirects to /error/. No Pure web-service endpoint is publicly reachable.
+  humanURL: https://research-portal.st-andrews.ac.uk/
+  x-operator: tenant
+  x-platform: Elsevier Pure
+  x-vendor-repo: all/elsevier
+  x-liveness: live-2026-09-01
   tags:
-  - Notices
+  - Research
+  - Research Information
+  - Metadata
   properties:
-  - type: OpenAPI
-    url: openapi/university-of-st-andrews-notices-api-openapi.yml
   - type: Documentation
-    url: https://status.st-andrews.ac.uk/api
-  - type: Status
-    url: https://status.st-andrews.ac.uk/
-  - type: x-vocabulary
-    url: vocabulary/university-of-st-andrews-vocabulary.yml
-  - type: x-rules
-    url: rules/university-of-st-andrews-rules.yml
-  - type: x-json-ld
-    url: json-ld/university-of-st-andrews-context.jsonld
-- aid: university-of-st-andrews:university-of-st-andrews-status-api
-  name: University of St Andrews Status API
-  description: Overall page status.
-  humanURL: https://status.st-andrews.ac.uk/api
+    url: https://www.st-andrews.ac.uk/research/support/pure/
+  - type: Documentation
+    url: https://api.datacite.org/clients/bl.standrew
+- aid: university-of-st-andrews:status-api
+  name: University of St Andrews Service Status API (SorryApp tenancy)
+  description: >-
+    The University publishes IT service status at status.st-andrews.ac.uk, which carries a
+    read-only JSON API at /api/v1 with /status, /components and /notices. Verified live on
+    2026-09-01: /api/v1/status returned 200 naming page 13609 "University of St Andrews service
+    status" with 110 components and 288 notices. The data is entirely St Andrews' - named
+    campus systems, real maintenance windows - but the contract is not. The host CNAMEs to
+    a5b404ba.sorryapp.com on Heroku, and the documentation page at /api is SorryApp's product
+    template, carrying placeholder example values (counts of 50 and 100, timestamps of
+    2023-01-01) that do not match the live deployment. This is the same class as an Atlassian
+    Statuspage tenancy, and it is recorded the same way: tenant, relationship kept, vendor
+    contract not saved. Three OpenAPI documents describing this API, and the twenty-three
+    schema, example, collection, rule, vocabulary, JSON-LD and agentic-access artifacts derived
+    from them, were removed from this repository on 2026-09-01 for exactly this reason.
+  humanURL: https://status.st-andrews.ac.uk/
   baseURL: https://status.st-andrews.ac.uk/api/v1
+  x-operator: tenant
+  x-platform: SorryApp
+  x-liveness: live-2026-09-01
   tags:
   - Status
+  - Operational Transparency
   properties:
-  - type: OpenAPI
-    url: openapi/university-of-st-andrews-status-api-openapi.yml
   - type: Documentation
     url: https://status.st-andrews.ac.uk/api
   - type: Status
     url: https://status.st-andrews.ac.uk/
-  - type: x-vocabulary
-    url: vocabulary/university-of-st-andrews-vocabulary.yml
-  - type: x-rules
-    url: rules/university-of-st-andrews-rules.yml
-  - type: x-json-ld
-    url: json-ld/university-of-st-andrews-context.jsonld
+- aid: university-of-st-andrews:datacite-membership
+  name: DataCite Membership (provider NAHY)
+  description: >-
+    The University of St Andrews is a registered DataCite provider - id nahy, symbol NAHY,
+    memberType consortium_organization, country GB, rorId https://ror.org/02wn5qz54, created
+    2020-09-01 - minting DOIs for its research datasets through repository client bl.standrew.
+    Verified 2026-09-01 against https://api.datacite.org/providers/nahy (200) and
+    https://api.datacite.org/clients?provider-id=nahy (200). This is a membership, a fact about
+    the institution, not a contract it authored: the DataCite API belongs to all/datacite and is
+    not saved here.
+  humanURL: https://commons.datacite.org/repositories/bl.standrew
+  x-operator: registry
+  x-registry: DataCite
+  x-registrant-id: nahy
+  x-vendor-repo: all/datacite
+  x-liveness: live-2026-09-01
+  tags:
+  - Persistent Identifiers
+  - DOI
+  - Research Data
+  properties:
+  - type: Documentation
+    url: https://api.datacite.org/providers/nahy
+- aid: university-of-st-andrews:crossref-membership
+  name: Crossref Membership (member 6332)
+  description: >-
+    The University of St Andrews Library is Crossref member 6332, holding 688 DOIs (151 current,
+    537 backfile) as of a probe on 2026-09-01 against
+    https://api.crossref.org/members?query=st+andrews (200). A registered membership and a fact
+    about the institution; the Crossref API belongs to all/crossref and is not saved here.
+  humanURL: https://www.crossref.org/
+  x-operator: registry
+  x-registry: Crossref
+  x-registrant-id: '6332'
+  x-vendor-repo: all/crossref
+  x-liveness: live-2026-09-01
+  tags:
+  - Persistent Identifiers
+  - DOI
+  - Scholarly Publishing
+  properties:
+  - type: Documentation
+    url: https://api.crossref.org/members/6332
+- aid: university-of-st-andrews:ror-registration
+  name: ROR Registration (02wn5qz54)
+  description: >-
+    The University of St Andrews is registered in the Research Organization Registry as
+    https://ror.org/02wn5qz54, status active, types education and funder, established 1410,
+    domain st-andrews.ac.uk, located in St Andrews, Scotland. Cross-registry identifiers carried
+    in the record: Funder Registry 501100000740, GRID grid.11914.3c, ISNI 0000 0001 0721 1626,
+    Wikidata Q216273. Verified 2026-09-01 against https://api.ror.org/organizations/02wn5qz54
+    (200). A registration, not a contract - the ROR API is ROR's.
+  humanURL: https://ror.org/02wn5qz54
+  x-operator: registry
+  x-registry: ROR
+  x-registrant-id: 02wn5qz54
+  x-liveness: live-2026-09-01
+  tags:
+  - Persistent Identifiers
+  - Organization Identifiers
+  properties:
+  - type: Documentation
+    url: https://api.ror.org/organizations/02wn5qz54
+x-coverage:
+  state: none
+  reason: no_public_api
+  detail: >-
+    St Andrews authors no public API and operates no developer portal, and after a full probe
+    sweep on 2026-09-01 that is the correct measurement rather than a gap in the search. The
+    four conventional developer hostnames - api., data., opendata. and developer.st-andrews.ac.uk
+    - are all NXDOMAIN. The institution's genuinely own machine-readable surfaces are protocol
+    endpoints rather than products: a working DSpace OAI-PMH 2.0 interface with twelve metadata
+    formats, a UK Access Management Federation Shibboleth IdP that serves its own SAML metadata,
+    and registrant records in DataCite, Crossref and ROR. Three negative findings are recorded
+    rather than smoothed over. First, https://www.st-andrews.ac.uk/llms.txt returns 200 with
+    content-type text/plain but its body is byte-identical to sitemap.xml - it is an XML sitemap
+    misfiled under an llms.txt name, so no llms.txt credit is taken. Second,
+    https://timetables.st-andrews.ac.uk/ returns 200 on every path including /robots.txt with
+    the same 24,707-byte Angular shell (title "Publish", a Scientia web-timetabling product):
+    a soft-200 SPA, not a machine surface, and its bundle exposes no institution API endpoint.
+    Third, the Pure OAI-PMH endpoint recorded in this repository since June 2026 is gone -
+    risweb.st-andrews.ac.uk/ws/oai 301s to the portal home page and research-portal
+    /ws/oai 301s to /error/. Two live vendor tenancies remain recorded as relationships:
+    Elsevier Pure for the research portal and SorryApp for the status page. The status API's
+    three OpenAPI documents and their derived artifacts were removed on 2026-09-01 because the
+    contract is SorryApp's product template, not St Andrews' engineering; the repository
+    therefore holds no contract, which is the honest state.
+  evidence:
+  - url: https://research-repository.st-andrews.ac.uk/oai/request?verb=Identify
+    status: 200
+    note: OAI-PMH 2.0, repositoryName "St Andrews Research Repository", granularity to the second
+  - url: https://research-repository.st-andrews.ac.uk/oai/request?verb=ListMetadataFormats
+    status: 200
+    note: twelve prefixes including uketd_dc, mods, mets, ore, rdf, marc, etdms
+  - url: https://research-repository.st-andrews.ac.uk/oai/request?verb=ListSets
+    status: 200
+    note: community/collection set hierarchy under handle prefix 10023
+  - url: https://login.st-andrews.ac.uk/idp/shibboleth
+    status: 200
+    note: live SAML metadata, application/xml, entityID https://idp.st-andrews.ac.uk/shibboleth
+  - url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+    status: 200
+    note: carries uk000278 St Andrews IdP (registered 2008-01-16, Sirtfi) plus the MacTutor SP
+  - url: https://api.datacite.org/providers/nahy
+    status: 200
+    note: DataCite provider NAHY, consortium_organization, rorId 02wn5qz54, client bl.standrew
+  - url: https://api.crossref.org/members?query=st+andrews
+    status: 200
+    note: single match, member 6332 University of St. Andrews Library, 688 DOIs
+  - url: https://api.ror.org/organizations/02wn5qz54
+    status: 200
+    note: active, types education + funder, domain st-andrews.ac.uk
+  - url: https://status.st-andrews.ac.uk/api/v1/status
+    status: 200
+    note: live; host CNAMEs to a5b404ba.sorryapp.com - SorryApp tenancy, contract not St Andrews'
+  - url: https://research-portal.st-andrews.ac.uk/
+    status: 200
+    note: CNAMEs to standrews.elsevierpure.com - Elsevier Pure tenancy
+  - url: https://research-portal.st-andrews.ac.uk/ws/oai?verb=Identify
+    status: 301
+    note: redirects to /error/ - no Pure web service is publicly reachable
+  - url: https://risweb.st-andrews.ac.uk/ws/oai?verb=Identify
+    status: 301
+    note: dead - redirects to the research portal home page; pointer removed from this profile
+  - url: https://www.st-andrews.ac.uk/llms.txt
+    status: 200
+    note: body is byte-identical to sitemap.xml - a misfiled sitemap, not an llms.txt
+  - url: https://timetables.st-andrews.ac.uk/
+    status: 200
+    note: Angular SPA shell returned for every path including /robots.txt - soft-200, no API
+  - url: https://api.st-andrews.ac.uk/
+    status: 0
+    note: NXDOMAIN
+  - url: https://data.st-andrews.ac.uk/
+    status: 0
+    note: NXDOMAIN
+  - url: https://opendata.st-andrews.ac.uk/
+    status: 0
+    note: NXDOMAIN
+  - url: https://developer.st-andrews.ac.uk/
+    status: 0
+    note: NXDOMAIN
+  - url: https://www.st-andrews.ac.uk/.well-known/security.txt
+    status: 403
+    note: no RFC 9116 security.txt served
+  - url: https://api.github.com/orgs/StAResComp
+    status: 200
+    note: University of St Andrews Research Computing, 60 public repos
+  probed: '2026-09-01'
 common:
-  - type: AgenticAccess
-    url: agentic-access/university-of-st-andrews-agentic-access.yml
+  - type: Website
+    url: https://www.st-andrews.ac.uk/
+    x-liveness: live-2026-09-01
+  - type: ResearchRepository
+    url: https://research-repository.st-andrews.ac.uk/
+    name: St Andrews Research Repository (DSpace)
+    x-operator: institution
+    x-liveness: live-2026-09-01
+  - type: ResearchRepository
+    url: https://research-portal.st-andrews.ac.uk/
+    name: St Andrews Research Portal
+    x-operator: tenant
+    x-platform: Elsevier Pure
+    x-liveness: live-2026-09-01
+  - type: IdentityFederation
+    url: https://login.st-andrews.ac.uk/idp/shibboleth
+    name: University of St Andrews Shibboleth IdP metadata
+    x-operator: institution
+    x-entity-id: https://idp.st-andrews.ac.uk/shibboleth
+    x-liveness: live-2026-09-01
+  - type: IdentityFederation
+    url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+    name: UK Access Management Federation aggregate (carries entity uk000278)
+    x-operator: federation
+    x-liveness: live-2026-09-01
+  - type: ResearchComputing
+    url: https://github.com/StAResComp
+    name: University of St Andrews Research Computing
+    x-operator: institution
+    x-public-repos: 60
+    x-liveness: live-2026-09-01
+  - type: GitHubOrganization
+    url: https://github.com/StAResComp
+    x-operator: institution
+    x-liveness: live-2026-09-01
+  - type: CourseCatalog
+    url: https://timetables.st-andrews.ac.uk/
+    name: St Andrews web timetables (Scientia Publish - SPA, no API)
+    x-operator: tenant
+    x-liveness: live-2026-09-01
+  - type: AIPolicy
+    url: https://www.st-andrews.ac.uk/policy/information-governance-and-management-information-security/use-of-generative-ai---llm.pdf
+    name: Use of generative AI (LLM) - information security policy
+    x-liveness: live-2026-09-01
+  - type: AIPolicy
+    url: https://www.st-andrews.ac.uk/policy/academic-policies-assessment-examination-and-award-good-academic-practice/generative-ai-faqs-students-guidance.pdf
+    name: Generative AI FAQs - student guidance on good academic practice
+    x-liveness: live-2026-09-01
+  - type: Status
+    url: https://status.st-andrews.ac.uk/
+    x-operator: tenant
+    x-platform: SorryApp
+    x-liveness: live-2026-09-01
+  - type: Blog
+    url: https://openresearch.wp.st-andrews.ac.uk/
+    name: St Andrews Open Research
+    x-liveness: live-2026-09-01
+  - type: BlogRSS
+    url: https://openresearch.wp.st-andrews.ac.uk/feed/
+    x-liveness: live-2026-09-01
+  - type: Support
+    url: https://www.st-andrews.ac.uk/it-support/
+    x-liveness: live-2026-09-01
+  - type: TermsOfService
+    url: https://www.st-andrews.ac.uk/terms/
+    x-liveness: live-2026-09-01
+  - type: PrivacyPolicy
+    url: https://www.st-andrews.ac.uk/terms/data-protection/
+    x-liveness: live-2026-09-01
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/university-of-st-andrews/
+    x-liveness: live-999-2026-09-01
+  - type: Conformance
+    url: conformance/university-of-st-andrews-education-standards.yml
+    name: Education-regime domain standard conformance
   - type: VulnerabilityDisclosure
     url: security/university-of-st-andrews-vulnerability-disclosure.yml
   - type: DomainSecurity
     url: security/university-of-st-andrews-domain-security.yml
-  - type: Website
-    url: https://www.st-andrews.ac.uk/
-  - type: GitHub
-    url: https://github.com/StAResComp
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/university-of-st-andrews/
-  - type: Status
-    url: https://status.st-andrews.ac.uk/
   - type: Plans
     url: plans/university-of-st-andrews-plans-pricing.yml
   - type: RateLimits
@@ -173,3 +424,13 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  pipeline: pipeline-university.md
+  run: '2026-09-01'
+  note: >-
+    Re-profiled under the university pipeline's operator axis. Operator attribution settled per
+    surface before any artifact was kept; the SorryApp status contract and its derived artifact
+    set were removed as vendor engineering, the dead Pure OAI pointer was replaced by the tenant
+    relationship it actually stands for, and three institution-operated or registrant surfaces
+    (Shibboleth IdP, DataCite, Crossref, ROR) were added. The composite score is expected to
+    fall; that is the correction working.
