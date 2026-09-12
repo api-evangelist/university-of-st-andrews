@@ -1,0 +1,21 @@
+{
+  "repo": "university-of-st-andrews",
+  "feeds": [
+    {
+      "source": "https://status.st-andrews.ac.uk/",
+      "feed_url": "https://status.st-andrews.ac.uk/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://openresearch.wp.st-andrews.ac.uk/",
+      "feed_url": "https://openresearch.wp.st-andrews.ac.uk/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-09-06T19:17:18Z"
+}
