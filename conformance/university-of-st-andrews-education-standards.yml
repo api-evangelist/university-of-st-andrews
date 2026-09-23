@@ -1,0 +1,116 @@
+generated: '2026-09-01'
+method: probed
+source: >-
+  Live probes of University of St Andrews hosts and of the registries and federations the
+  institution is enrolled in, run 2026-09-01. Every row below cites the exact URL and status
+  code that produced the verdict. No conformance is asserted from prose or from a vendor's
+  product documentation.
+provider: University of St Andrews
+providerId: university-of-st-andrews
+regime: education
+regime_standards_source: kin-score scoring.yml -> regimes.education.standards
+note: >-
+  Conformance targets are the Kin Score `education` regime standards[]. St Andrews conforms on
+  the four that a UK research university genuinely operates itself - OAI-PMH, Shibboleth, SAML
+  and DataCite - plus Crossref as a registered member. The teaching-and-learning interoperability
+  family (LTI, OneRoster, Ed-Fi, Caliper, QTI, SCIM) returned nothing publicly reachable: those
+  standards live inside the University's licensed LMS and student-record systems, which are not
+  exposed to unauthenticated clients. Absence here is an honest negative probe, not a failure to
+  look, and no reward is claimed for it.
+standards:
+- id: oai-pmh
+  conforms: true
+  evidence: >-
+    https://research-repository.st-andrews.ac.uk/oai/request?verb=Identify returned 200 with a
+    well-formed OAI-PMH 2.0 response: repositoryName "St Andrews Research Repository",
+    protocolVersion 2.0, adminEmail Digital-Repository@st-andrews.ac.uk, earliestDatestamp
+    2006-11-21T17:35:56Z, granularity YYYY-MM-DDThh:mm:ssZ, deletedRecord transient.
+    verb=ListMetadataFormats returned 200 with twelve prefixes - oai_dc, qdc, mods, mets, ore,
+    rdf, marc, dim, didl, xoai, etdms and uketd_dc (the UK Electronic Theses and Dissertations
+    profile). verb=ListSets returned 200 with the community/collection set hierarchy under
+    handle prefix 10023. Host is under the institution's own registrable domain.
+  operator: institution
+- id: shibboleth
+  conforms: true
+  evidence: >-
+    The University operates its own Shibboleth Identity Provider, entityID
+    https://idp.st-andrews.ac.uk/shibboleth, registered in the UK Access Management Federation
+    as entity uk000278 with mdrpi:RegistrationInfo registrationAuthority
+    http://ukfederation.org.uk and registrationInstant 2008-01-16T14:59:00Z. The federation
+    entity declares shibmd:Scope st-andrews.ac.uk on both the IDPSSODescriptor and the
+    AttributeAuthorityDescriptor, protocolSupportEnumeration urn:mace:shibboleth:1.0, and
+    carries the REFEDS Sirtfi assurance certification
+    (urn:oasis:names:tc:SAML:attribute:assurance-certification = https://refeds.org/sirtfi).
+    The IdP also serves its own live metadata: https://login.st-andrews.ac.uk/idp/shibboleth
+    returned 200 application/xml, 4,351 bytes, validUntil 2040-07-01.
+  operator: institution
+- id: saml
+  conforms: true
+  evidence: >-
+    Same entity. IDPSSODescriptor advertises SAML 1.1 and SAML 2.0
+    (urn:oasis:names:tc:SAML:1.1:protocol, urn:oasis:names:tc:SAML:2.0:protocol) with
+    SingleSignOnService bindings HTTP-POST, HTTP-POST-SimpleSign and HTTP-Redirect at
+    login.st-andrews.ac.uk/idp/profile/SAML2/..., ArtifactResolutionService over SOAP, and an
+    AttributeAuthorityDescriptor exposing AttributeService over SAML 1.0 and 2.0 SOAP bindings.
+    NameIDFormats: urn:mace:shibboleth:1.0:nameIdentifier and
+    urn:oasis:names:tc:SAML:2.0:nameid-format:transient.
+  operator: institution
+- id: datacite
+  conforms: true
+  evidence: >-
+    https://api.datacite.org/providers/nahy returned 200. The University of St Andrews is
+    DataCite provider NAHY (id nahy), memberType consortium_organization, country GB, rorId
+    https://ror.org/02wn5qz54, created 2020-09-01. Its DOI-minting repository client is
+    bl.standrew (https://api.datacite.org/clients?provider-id=nahy, 200), named "University of
+    St Andrews" and pointing at the Pure-backed dataset registry. DOI registration is the
+    institution's own act; the DataCite API contract is DataCite's and is not saved here.
+  operator: registry
+- id: crossref
+  conforms: true
+  evidence: >-
+    https://api.crossref.org/members?query=st+andrews returned 200 with exactly one match:
+    member 6332, primary-name "University of St. Andrews Library", counts
+    {current-dois 151, backfile-dois 537, total-dois 688}. Membership is the institution's;
+    the Crossref API contract is Crossref's and is not saved here.
+  operator: registry
+- id: orcid
+  conforms: false
+  evidence: >-
+    No institutional ORCID membership or Member API integration could be evidenced.
+    https://pub.orcid.org/v3.0/expanded-search/?q=affiliation-org-name:"University of St
+    Andrews" returned 200 with individual researcher records carrying the affiliation, which
+    evidences researchers holding iDs, not an institutional member integration. Recorded as
+    not-evidenced rather than absent.
+- id: lti
+  conforms: false
+  evidence: >-
+    No publicly reachable LTI platform endpoint. https://moodle.st-andrews.ac.uk/ returned 200
+    (title "Home | Moodle") but every LTI 1.3 platform path 404s - /mod/lti/certs.php,
+    /mod/lti/openid-configuration and /mod/lti/auth.php all returned 404, as did
+    /webservice/rest/server.php. Any LTI in use is behind institutional authentication.
+- id: scim
+  conforms: false
+  evidence: >-
+    No SCIM 2.0 service provider configuration is publicly served. Identity provisioning at St
+    Andrews is expressed through the Shibboleth/SAML attribute authority above, not a public
+    SCIM endpoint. /.well-known/openid-configuration on www.st-andrews.ac.uk returned 404.
+- id: oneroster
+  conforms: false
+  evidence: >-
+    No OneRoster endpoint found on any st-andrews.ac.uk host. OneRoster is a K-12 rostering
+    standard and is not expected at a UK university; recorded for completeness against the
+    regime standards[] list.
+- id: ed-fi
+  conforms: false
+  evidence: >-
+    No Ed-Fi ODS/API found. Ed-Fi is a US K-12 data standard with no UK higher-education
+    deployment; recorded for completeness.
+- id: caliper
+  conforms: false
+  evidence: >-
+    No 1EdTech Caliper Analytics sensor or event store is publicly exposed. Learning analytics,
+    if collected, is internal to the licensed LMS.
+- id: qti
+  conforms: false
+  evidence: >-
+    No QTI assessment item bank or QTI-conformant delivery endpoint is publicly reachable.
