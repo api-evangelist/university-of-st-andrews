@@ -1,4 +1,4 @@
-# University of St Andrews (university-of-st-andrews)
+# University of St Andrews
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,48 +64,164 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Scotland's first university (founded 1413) and ranked #90 in the QS World University Rankings 2025. This repository catalogs the University of St Andrews' public developer and API footprint as an [APIs.json](http://apisjson.org) provider profile. St Andrews has no centralized developer portal; its confirmed public, machine-readable surface is oriented toward research-data interoperability and operational transparency.
+The University of St Andrews is Scotland's first university, chartered in 1413 with teaching from 1410, and a public research institution in Fife with ROR identifier https://ror.org/02wn5qz54. It authors no public API and operates no developer portal: probes on 2026-09-01 found no host at api.st-andrews.ac.uk, data.st-andrews.ac.uk, opendata.st-andrews.ac.uk or developer.st-andrews.ac.uk, all four NXDOMAIN. What St Andrews genuinely operates itself, on its own registrable domain, is metadata and identity infrastructure rather than product APIs. Three surfaces are the institution's own. Its DSpace research repository serves a fully working OAI-PMH 2.0 interface at research-repository.st-andrews.ac.uk/oai/request with twelve metadata formats including the UK electronic-theses profile uketd_dc. Its Shibboleth Identity Provider, entityID https://idp.st-andrews.ac.uk/shibboleth, has been registered in the UK Access Management Federation since January 2008, carries REFEDS Sirtfi assurance, and serves its own live SAML metadata at login.st-andrews.ac.uk/idp/shibboleth. And it is an enrolled registrant in the scholarly identifier registries, as DataCite provider NAHY and Crossref member 6332. Everything else that looks like a St Andrews API is a vendor's contract running under a St Andrews name: the research portal at research-portal.st-andrews.ac.uk is an Elsevier Pure tenancy, and the service status page at status.st-andrews.ac.uk is a SorryApp tenancy. Both are recorded here as tenant relationships, which they are, and neither vendor's contract is saved under this slug.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/university-of-st-andrews/refs/heads/main/apis.yml
-- Run it with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=university-of-st-andrews-api-evangelist&utm_content=repo
+**Areas:** Education · Higher Education · University · Public Research University · United Kingdom · Scotland · Research · Research Repository · Open Access · OAI-PMH · Identity Federation · Shibboleth
 
-## Type
+## University of St Andrews on APIs.io
 
-Index / Consumer / 3rd-Party
+Everything profiled for University of St Andrews is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/university-of-st-andrews/](https://apis.io/providers/university-of-st-andrews/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-Education, Higher Education, University, Research, Open Access, OAI-PMH, Scotland, United Kingdom
+- [St Andrews Research Repository OAI-PMH](https://apis.io/apis/university-of-st-andrews/repository-oai/) — OAI-PMH 2.0 endpoint for the DSpace-based St Andrews Research Repository, the University's open-access repository of theses, articles and other research…
+- [University of St Andrews Shibboleth Identity Provider](https://apis.io/apis/university-of-st-andrews/identity-federation/) — The University's own SAML 2.0 / Shibboleth Identity Provider, entityID https://idp.st-andrews.ac.uk/shibboleth, registered in the UK Access Management…
+- [St Andrews Research Portal (Elsevier Pure tenancy)](https://apis.io/apis/university-of-st-andrews/research-portal/) — research-portal.st-andrews.ac.uk is the University's research information system and public research portal, running on Elsevier Pure - the host CNAMEs to…
+- [University of St Andrews Service Status API (SorryApp tenancy)](https://apis.io/apis/university-of-st-andrews/status-api/) — The University publishes IT service status at status.st-andrews.ac.uk, which carries a read-only JSON API at /api/v1 with /status, /components and /notices.…
+- [DataCite Membership (provider NAHY)](https://apis.io/apis/university-of-st-andrews/datacite-membership/) — The University of St Andrews is a registered DataCite provider - id nahy, symbol NAHY, memberType consortium_organization, country GB, rorId…
+- [Crossref Membership (member 6332)](https://apis.io/apis/university-of-st-andrews/crossref-membership/) — The University of St Andrews Library is Crossref member 6332, holding 688 DOIs (151 current, 537 backfile) as of a probe on 2026-09-01 against…
+- [ROR Registration (02wn5qz54)](https://apis.io/apis/university-of-st-andrews/ror-registration/) — The University of St Andrews is registered in the Research Organization Registry as https://ror.org/02wn5qz54, status active, types education and funder,…
 
-## APIs
+### Published properties
 
-- **Service Status API** — JSON status API (Sorry platform), 10 req/sec, components and notices. Docs: https://status.st-andrews.ac.uk/api
-- **Pure Research Portal OAI-PMH** — Metadata harvesting for the Pure research information system behind the St Andrews Research Portal. Base: https://risweb.st-andrews.ac.uk/ws/oai — Docs: https://www.st-andrews.ac.uk/research/support/pure/
-- **St Andrews Research Repository OAI-PMH** — DSpace open-access repository metadata harvesting. Base: https://research-repository.st-andrews.ac.uk/dspace-oai/request — Docs: https://research-repository.st-andrews.ac.uk/
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Plans, Rate Limits, and FinOps
+#### JSON Schema (3)
 
-- Plans & Pricing: [plans/university-of-st-andrews-plans-pricing.yml](plans/university-of-st-andrews-plans-pricing.yml)
-- Rate Limits: [rate-limits/university-of-st-andrews-rate-limits.yml](rate-limits/university-of-st-andrews-rate-limits.yml)
-- FinOps: [finops/university-of-st-andrews-finops.yml](finops/university-of-st-andrews-finops.yml)
+The data models the API reads and writes.
 
-## Timestamps
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/schemas/university-of-st-andrews/university-of-st-andrews-component/)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/schemas/university-of-st-andrews/university-of-st-andrews-notice/)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/schemas/university-of-st-andrews/university-of-st-andrews-page/)
 
-- Created: 2026-06-03
-- Modified: 2026-06-03
+#### JSON Structure (2)
 
-## Common Properties
+Data models expressed in JSON Structure.
 
-- Website: https://www.st-andrews.ac.uk/
-- GitHub (Research Computing): https://github.com/StAResComp
-- LinkedIn: https://www.linkedin.com/school/university-of-st-andrews/
-- Status: https://status.st-andrews.ac.uk/
-- Review: [review.yml](review.yml)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/json-structure/university-of-st-andrews/university-of-st-andrews-component-structure/)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/json-structure/university-of-st-andrews/university-of-st-andrews-notice-structure/)
 
-## Notes
+#### JSON-LD (1)
 
-All entries were verified against live or cached public sources on 2026-06-03. The Pure OAI-PMH endpoint and Research Portal returned HTTP 200. The status API base path returns HTTP 406 to non-browser User-Agents but is documented and live. The DSpace Research Repository returned HTTP 503 to automated probes at review time (throttling); its OAI-PMH endpoint is confirmed via search indexing. The LinkedIn school page returns HTTP 999 (LinkedIn's bot/login gate) but exists. No endpoints were fabricated; St Andrews does not publish a unified developer portal.
+Linked-data contexts for the provider's vocabulary.
 
-## Maintainers
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/jsonld/university-of-st-andrews/university-of-st-andrews-context/)
 
-- Kin Lane — kin@apievangelist.com
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [University of St Andrews Service Status API Vocabulary](https://apis.io/vocabularies/university-of-st-andrews/university-of-st-andrews-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/examples/university-of-st-andrews/university-of-st-andrews-getNotice-example/)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/examples/university-of-st-andrews/university-of-st-andrews-getStatus-example/)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/examples/university-of-st-andrews/university-of-st-andrews-listComponents-example/)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/examples/university-of-st-andrews/university-of-st-andrews-listNotices-example/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/collections/university-of-st-andrews/open-university-of-st-andrews-components-api/)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/collections/university-of-st-andrews/open-university-of-st-andrews-notices-api/)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/collections/university-of-st-andrews/open-university-of-st-andrews-status-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/rules/university-of-st-andrews/university-of-st-andrews-jsonschema-spectral-rules/)
+- [Moved to /providers/university-of-st-andrews/](https://apis.io/rules/university-of-st-andrews/university-of-st-andrews-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [University Of St Andrews Domain Security](https://apis.io/security/university-of-st-andrews/university-of-st-andrews-domain-security/)
+- [University Of St Andrews Vulnerability Disclosure](https://apis.io/security/university-of-st-andrews/university-of-st-andrews-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [University Of St Andrews Plans Pricing](https://apis.io/plans/university-of-st-andrews/university-of-st-andrews-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [University Of St Andrews Rate Limits](https://apis.io/rate-limits/university-of-st-andrews/university-of-st-andrews-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [University Of St Andrews Finops](https://apis.io/finops/university-of-st-andrews/university-of-st-andrews-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.st-andrews.ac.uk/)
+- [Support](https://www.st-andrews.ac.uk/it-support/)
+- [Blog](https://openresearch.wp.st-andrews.ac.uk/)
+- [Terms of service](https://www.st-andrews.ac.uk/terms/)
+- [Privacy policy](https://www.st-andrews.ac.uk/terms/data-protection/)
+- [GitHub](https://github.com/StAResComp)
+
+## API Evangelist rating
+
+**Kin Score 21.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 4.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 26.3 |
+
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.4** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/university-of-st-andrews/](https://apis.io/providers/university-of-st-andrews/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for University of St Andrews: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/university-of-st-andrews/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
